@@ -1,21 +1,12 @@
-import { StatusBar } from "expo-status-bar";
-import { Button } from "react-native";
 import { StyleSheet, Text, View } from "react-native";
 import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
 import * as SplashScreen from "expo-splash-screen";
 import { useState, useEffect, useCallback } from "react";
 import * as Font from "expo-font";
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
-import ChatSettingsScreen from "./screens/ChatSettingsScreen";
-import SettingsScreen from "./screens/SettingsScreen";
-import ChatListScreen from "./screens/ChatListScreen";
+import AppNavigator from "./navigation/AppNavigator";
 
 SplashScreen.preventAutoHideAsync(); //prevents splashscreen from going away
-const Stack = createNativeStackNavigator();
-const Tab = createBottomTabNavigator();
+
 export default function App() {
   const [appIsLoaded, setAppIsLoaded] = useState(false);
 
@@ -55,30 +46,10 @@ export default function App() {
   if (!appIsLoaded) {
     return null;
   }
-const TabNavigator = () =>{
-  return(
-    <Tab.Navigator screenOptions={{headerTitle: ''}}>
-    <Tab.Screen name="ChatList" component={ChatListScreen} options={{tabBarLabel: 'Chats'}}/>
-    <Tab.Screen name="Settings" component={SettingsScreen} options={{
-      tabBarLabel: 'Settings'
-    }}/>
-  </Tab.Navigator>
-  )
-}
+
   return (
     <SafeAreaProvider style={styles.container} onLayout={onLayout}>
-     
-        <NavigationContainer>
-          <StatusBar style="auto" />
-          <Stack.Navigator>
-            <Stack.Screen name="Home" component={TabNavigator} options={{headerShown: false}}/>
-            <Stack.Screen name="ChatSettings" component={ChatSettingsScreen} options={{
-              headerTitle: 'Chat Settings',
-              headerBackTitle: 'Back'
-            }}/>
-          </Stack.Navigator>
-        </NavigationContainer>
-     
+      <AppNavigator />
     </SafeAreaProvider>
   );
 }

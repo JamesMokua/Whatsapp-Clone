@@ -2,8 +2,8 @@ import { Button, StyleSheet, Text, View } from 'react-native';
 export default function ChatListScreen(props) {
   return (
     <View style={styles.container}>
-        <Text>Home Screen</Text>
-        <Button title='Go to settings' onPress={() => {props.navigation.navigate('ChatSettings')} }/>
+        <Text>Chat List Screen</Text>
+        <Button title='Go to Chat Screen' onPress={() => {props.navigation.navigate('ChatScreen')} }/>
     </View>
   )
 }
