@@ -1,2 +1,2 @@
 # Whatsapp-Clone
-Whatsapp application made in React Native
+A Whatsapp clone application made in React Native
